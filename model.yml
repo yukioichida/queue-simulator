@@ -26,7 +26,7 @@
 #  DO NOT DELETE THE NEXT LINE STARTED BY '!'
 !PARAMETERS
 arrivals: 
-   entrada: 45.0
+   entrada: 2.0
 
 queues: 
    entrada: 
