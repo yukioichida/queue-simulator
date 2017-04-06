@@ -29,47 +29,58 @@ arrivals:
    Q1: 45.0
 
 queues: 
-   Q1: 
+   entrada: 
       servers: 1
-      capacity: 5
-      minArrival: 20.0
-      maxArrival: 40.0
-      minService: 10.0
-      maxService: 12.0
-   Q2: 
-      servers: 2
-      capacity: 5
-      minService: 30.0
-      maxService: 120.0
-   Q3: 
-      servers: 2
-      capacity: 5
+      capacity: 10
+      minArrival: 1.0
+      maxArrival: 5.0
+      minService: 6.0
+      maxService: 10.0
+   balcao: 
+      servers: 8
+      capacity: 20
       minService: 15.0
-      maxService: 60.0
-   Q4: 
-      servers: 3
+      maxService: 20.0
+   banheiro: 
+      servers: 5
+      capacity: 10
+      minService: 15.0
+      maxService: 20.0
+   pagamento: 
+      servers: 2
+      capacity: 10
       minService: 5.0
       maxService: 15.0
+   boliche:
+      servers: 3
+      capacity: 5
+      minService: 15
+      maxService: 20
+   banheiro_boliche:
+      servers: 1
+      capacity: 10
+      minService: 20
+      maxService: 25
 
 network: 
--  source: Q1
-   target: Q2
-   probability: 0.78
--  source: Q1
-   target: Q3
-   probability: 0.12
--  source: Q2
-   target: Q1
+-  source: balcao
+   target: boliche
+   probability: 0.2
+-  source: balcao
+   target: balcao
+   probability: 0.4
+-  source: balcao
+   target: banheiro
    probability: 0.1
--  source: Q2
-   target: Q3
-   probability: 0.27
--  source: Q2
-   target: Q4
-   probability: 0.63
--  source: Q3
-   target: Q4
-   probability: 1.0
+-  source: balcao
+   target: pagamento
+   probability: 0.3
+-  source: boliche
+   target: balcao
+   probability: 0.7
+-  source: boliche
+   target: banheiro_boliche
+   probability: 0.3
 
 rndnumbers: 
 - 0.2176
