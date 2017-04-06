@@ -26,7 +26,7 @@
 #  DO NOT DELETE THE NEXT LINE STARTED BY '!'
 !PARAMETERS
 arrivals: 
-   entrada: 2.0
+   entrada: 45.0
 
 queues: 
    entrada: 
@@ -63,6 +63,9 @@ queues:
       maxService: 25
 
 network: 
+-  source: entrada
+   target: balcao
+   probability: 1.0
 -  source: balcao
    target: boliche
    probability: 0.2
@@ -72,6 +75,9 @@ network:
 -  source: balcao
    target: banheiro
    probability: 0.1
+-  source: banheiro
+   target: balcao
+   probability: 1.0
 -  source: balcao
    target: pagamento
    probability: 0.3
@@ -81,6 +87,9 @@ network:
 -  source: boliche
    target: banheiro_boliche
    probability: 0.3
+-  source: banheiro_boliche
+   target: boliche
+   probability: 1.0
 
 rndnumbers: 
 - 0.2176
