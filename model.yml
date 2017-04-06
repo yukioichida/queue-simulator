@@ -1,0 +1,98 @@
+#==============================================================================
+#  EXAMPLE
+#  Write '#' to input comments
+#==============================================================================
+#
+#  HOW TO EDIT THIS FILE
+#  
+#  To simulate with pseudo-random numbers automatically generated, use the options 'rndnumbersPerSeed' and 'seeds'
+#    rndnumbersPerSeed: <value> (it is only used if the option 'seeds' is declared)
+#    seeds: (list of seed values used to automatically generate the pseudo-random numbers) 
+#    - 1
+#    - 2
+#  
+#  To simulate with a given list of pseudo-random numbers, use option 'rndnumbers'
+#    rndnumbers: (list of pseudo-random numbers to be used during the simulation)
+#    - 0.2176
+#    - 0.0103
+#    - 0.1109
+#  
+#  IMPORTANT:
+#    * If the option 'seeds' is used, 'rndnumbers' is ignored. In this case, delete 'rndnumbers'
+#      and its list of pseudo-random numbers
+#  
+#  The remainder details in this file is self-explained. Good-luck! :-)
+#  
+#  DO NOT DELETE THE NEXT LINE STARTED BY '!'
+!PARAMETERS
+arrivals: 
+   Q1: 45.0
+
+queues: 
+   Q1: 
+      servers: 1
+      capacity: 5
+      minArrival: 20.0
+      maxArrival: 40.0
+      minService: 10.0
+      maxService: 12.0
+   Q2: 
+      servers: 2
+      capacity: 5
+      minService: 30.0
+      maxService: 120.0
+   Q3: 
+      servers: 2
+      capacity: 5
+      minService: 15.0
+      maxService: 60.0
+   Q4: 
+      servers: 3
+      minService: 5.0
+      maxService: 15.0
+
+network: 
+-  source: Q1
+   target: Q2
+   probability: 0.78
+-  source: Q1
+   target: Q3
+   probability: 0.12
+-  source: Q2
+   target: Q1
+   probability: 0.1
+-  source: Q2
+   target: Q3
+   probability: 0.27
+-  source: Q2
+   target: Q4
+   probability: 0.63
+-  source: Q3
+   target: Q4
+   probability: 1.0
+
+rndnumbers: 
+- 0.2176
+- 0.0103
+- 0.1109
+- 0.3456
+- 0.9910
+- 0.2323
+- 0.9211
+- 0.0322
+- 0.1211
+- 0.5131
+- 0.7208
+- 0.9172
+- 0.9922
+- 0.8324
+- 0.5011
+- 0.2931
+
+rndnumbersPerSeed: 100000
+seeds: 
+- 1
+- 2
+- 3
+- 4
+- 5
