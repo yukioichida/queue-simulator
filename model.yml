@@ -39,8 +39,8 @@ queues:
    balcao: 
       servers: 8
       capacity: 20
-      minService: 15.0
-      maxService: 20.0
+      minService: 10.0
+      maxService: 15.0
    banheiro: 
       servers: 5
       capacity: 10
