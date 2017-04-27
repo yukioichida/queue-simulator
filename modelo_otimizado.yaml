@@ -1,0 +1,118 @@
+#==============================================================================
+#  EXAMPLE
+#  Write '#' to input comments
+#==============================================================================
+#
+#  HOW TO EDIT THIS FILE
+#  
+#  To simulate with pseudo-random numbers automatically generated, use the options 'rndnumbersPerSeed' and 'seeds'
+#    rndnumbersPerSeed: <value> (it is only used if the option 'seeds' is declared)
+#    seeds: (list of seed values used to automatically generate the pseudo-random numbers) 
+#    - 1
+#    - 2
+#  
+#  To simulate with a given list of pseudo-random numbers, use option 'rndnumbers'
+#    rndnumbers: (list of pseudo-random numbers to be used during the simulation)
+#    - 0.2176
+#    - 0.0103
+#    - 0.1109
+#  
+#  IMPORTANT:
+#    * If the option 'seeds' is used, 'rndnumbers' is ignored. In this case, delete 'rndnumbers'
+#      and its list of pseudo-random numbers
+#  
+#  The remainder details in this file is self-explained. Good-luck! :-)
+#  
+#  DO NOT DELETE THE NEXT LINE STARTED BY '!'
+!PARAMETERS
+arrivals: 
+   entrada: 45.0
+
+queues: 
+   entrada: 
+      servers: 2 #Inclusão de uma nova entrada no bar
+      capacity: 10
+      minArrival: 1.0
+      maxArrival: 5.0
+      minService: 5.0
+      maxService: 8.0
+   balcao: 
+      servers: 12 # Contratação de 4 funcionários
+      capacity: 20
+      minService: 10.0
+      maxService: 15.0
+   banheiro: 
+      servers: 5
+      capacity: 10
+      minService: 15.0
+      maxService: 20.0
+   pagamento: 
+      servers: 2
+      capacity: 10
+      minService: 5.0
+      maxService: 7.0 # Máquina de pagamento mais estável, diminuíndo o tempo de serviço máximo
+   boliche:
+      servers: 3
+      capacity: 10 # Depois da melhoria do banheiro, foi aumentado o tamanho da sala do boliche
+      minService: 10 # Diminuir o tempo máximo que uma pessoa pode ficar jogando boliche
+      maxService: 15
+   banheiro_boliche:
+      servers: 2 # Mais uma privada
+      capacity: 10
+      minService: 20
+      maxService: 25
+
+network: 
+-  source: entrada
+   target: balcao
+   probability: 1.0
+-  source: balcao
+   target: boliche
+   probability: 0.2
+-  source: balcao
+   target: balcao
+   probability: 0.4
+-  source: balcao
+   target: banheiro
+   probability: 0.1
+-  source: banheiro
+   target: balcao
+   probability: 1.0
+-  source: balcao
+   target: pagamento
+   probability: 0.3
+-  source: boliche
+   target: balcao
+   probability: 0.7
+-  source: boliche
+   target: banheiro_boliche
+   probability: 0.3
+-  source: banheiro_boliche
+   target: boliche
+   probability: 1.0
+
+rndnumbers: 
+- 0.2176
+- 0.0103
+- 0.1109
+- 0.3456
+- 0.9910
+- 0.2323
+- 0.9211
+- 0.0322
+- 0.1211
+- 0.5131
+- 0.7208
+- 0.9172
+- 0.9922
+- 0.8324
+- 0.5011
+- 0.2931
+
+rndnumbersPerSeed: 100000
+seeds: 
+- 1
+- 2
+- 3
+- 4
+- 5
