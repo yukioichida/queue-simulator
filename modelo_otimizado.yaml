@@ -34,7 +34,7 @@ queues:
       capacity: 10
       minArrival: 1.0
       maxArrival: 5.0
-      minService: 5.0
+      minService: 5.0 #Melhores tempos de saída
       maxService: 8.0
    balcao: 
       servers: 12 # Contratação de 4 funcionários
