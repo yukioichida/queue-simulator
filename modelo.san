@@ -1,0 +1,319 @@
+identifiers
+
+  UN = 480; // 480 min (i.e., 8 horas de trabalho por dia)
+
+  f_disp = (st CT_avail == A);
+
+  r_a_u = (UN/120);
+  r_u_a = (UN/360);
+
+  //Developer Senior Brazil
+  r_e1  = (UN/420);
+  r_sf1 = (UN/60);
+  r_s1  = (UN/120);
+  r_co1 = (UN/0.1)*f_disp;
+
+  //Developer Junior Brazil
+  r_e2  = (UN/60);
+  r_sf2 = (UN/420);
+  r_s2  = (UN/120);
+  r_co2 = (UN/0.1)*f_disp;
+  r_e3  = (UN/60);
+  r_sf3 = (UN/420);
+  r_s3  = (UN/120);
+  r_co3 = (UN/0.1)*f_disp;
+  r_e4  = (UN/60);
+  r_sf4 = (UN/420);
+  r_s4  = (UN/120);
+  r_co4 = (UN/0.1)*f_disp;
+
+  //Tester Senior Brazil
+  r_e5  = (UN/420);
+  r_sf5 = (UN/60);
+  r_s5  = (UN/120);
+  r_co5 = (UN/0.1)*f_disp;
+
+  //Business analyst Senior USA
+  r_e6  = (UN/420);
+  r_sf6 = (UN/60);
+  r_s6  = (UN/120);
+  r_co6 = (UN/0.1)*f_disp;
+  r_e7  = (UN/420);
+  r_sf7 = (UN/60);
+  r_s7  = (UN/120);
+  r_co7 = (UN/0.1)*f_disp;
+
+  //System engineer Junior Malaysia
+  r_e8  = (UN/60);
+  r_sf8 = (UN/420);
+  r_s8  = (UN/120);
+  r_co8 = (UN/0.1)*f_disp;
+
+  //Database administrator Senior India
+  r_e9  = (UN/420);
+  r_sf9 = (UN/60);
+  r_s9  = (UN/120);
+  r_co9 = (UN/0.1)*f_disp;
+
+  //ETL engineer Senior India
+  r_e10  = (UN/420);
+  r_sf10 = (UN/60);
+  r_s10  = (UN/120);
+  r_co10 = (UN/0.1)*f_disp;
+
+  //ETL engineer Junior USA
+  r_e11  = (UN/60);
+  r_sf11 = (UN/420);
+  r_s11  = (UN/120);
+  r_co11 = (UN/0.1)*f_disp;
+
+  //User Senior USA
+  r_e12  = (UN/420);
+  r_sf12 = (UN/60);
+  r_s12  = (UN/120);
+  r_co12 = (UN/0.1)*f_disp;
+  r_e13  = (UN/420);
+  r_sf13 = (UN/60);
+  r_s13  = (UN/120);
+  r_co13 = (UN/0.1)*f_disp;
+  r_e14  = (UN/420);
+  r_sf14 = (UN/60);
+  r_s14  = (UN/120);
+  r_co14 = (UN/0.1)*f_disp;
+
+events
+
+  loc a_u  (r_a_u);
+  loc u_a  (r_u_a);
+
+  loc e1   (r_e1);
+  loc sf1  (r_sf1);
+  syn s1   (r_s1);
+  syn co1  (r_co1);
+  loc e2   (r_e2);
+  loc sf2  (r_sf2);
+  syn s2   (r_s2);
+  syn co2  (r_co2);
+  loc e3   (r_e3);
+  loc sf3  (r_sf3);
+  syn s3   (r_s3);
+  syn co3  (r_co3);
+  loc e4   (r_e4);
+  loc sf4  (r_sf4);
+  syn s4   (r_s4);
+  syn co4  (r_co4);
+  loc e5   (r_e5);
+  loc sf5  (r_sf5);
+  syn s5   (r_s5);
+  syn co5  (r_co5);
+  loc e6   (r_e6);
+  loc sf6  (r_sf6);
+  syn s6   (r_s6);
+  syn co6  (r_co6);
+  loc e7   (r_e7);
+  loc sf7  (r_sf7);
+  syn s7   (r_s7);
+  syn co7  (r_co7);
+  loc e8   (r_e8);
+  loc sf8  (r_sf8);
+  syn s8   (r_s8);
+  syn co8  (r_co8);
+  loc e9   (r_e9);
+  loc sf9  (r_sf9);
+  syn s9   (r_s9);
+  syn co9  (r_co9);
+  loc e10  (r_e10);
+  loc sf10 (r_sf10);
+  syn s10  (r_s10);
+  syn co10 (r_co10);
+  loc e11  (r_e11);
+  loc sf11 (r_sf11);
+  syn s11  (r_s11);
+  syn co11 (r_co11);
+  loc e12  (r_e12);
+  loc sf12 (r_sf12);
+  syn s12  (r_s12);
+  syn co12 (r_co12);
+  loc e13  (r_e13);
+  loc sf13 (r_sf13);
+  syn s13  (r_s13);
+  syn co13 (r_co13);
+  loc e14  (r_e14);
+  loc sf14 (r_sf14);
+  syn s14  (r_s14);
+  syn co14 (r_co14);
+
+partial reachability = ((st Partic1 == W) && (st Partic2 == W) && (st Partic3 == W) && (st Partic4 == W) && (st Partic5 == W) && (st Partic6 == W) && (st Partic7 == W) && (st Partic8 == W) && (st Partic9 == W) && (st Partic10 == W) && (st Partic11 == W) && (st Partic12 == W) && (st Partic13 == W) && (st Partic14 == W) && (st CT_avail == A) && (st CT_activ == M));
+
+network GSD (continuous)
+
+  //Central Team composed of two members (DM senior usa/PM senior brazil) encapsulated in these two automata: CT_avail and CT_activ
+
+  aut CT_avail
+    stt A to (U) a_u
+    stt U to (A) u_a
+
+  aut CT_activ
+    stt M to (C) co1 co2 co3 co4 co5 co6 co7 co8 co9 co10 co11 co12 co13 co14
+    stt C to (M) s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14
+
+  //Developer Senior Brazil
+  aut Partic1
+    stt W to (S) e1
+    stt S to (W) sf1
+          to (C) co1
+    stt C to (W) s1
+
+  //Developer Junior Brazil
+  aut Partic2
+    stt W to (S) e2
+    stt S to (W) sf2
+          to (C) co2
+    stt C to (W) s2
+
+  //Developer Junior Brazil
+  aut Partic3
+    stt W to (S) e3
+    stt S to (W) sf3
+          to (C) co3
+    stt C to (W) s3
+
+  //Developer Junior Brazil
+  aut Partic4
+    stt W to (S) e4
+    stt S to (W) sf4
+          to (C) co4
+    stt C to (W) s4
+
+  //Tester Senior Brazil
+  aut Partic5
+    stt W to (S) e5
+    stt S to (W) sf5
+          to (C) co5
+    stt C to (W) s5
+
+  //Business analist Senior USA
+  aut Partic6
+    stt W to (S) e6
+    stt S to (W) sf6
+          to (C) co6
+    stt C to (W) s6
+
+  //Business analist Senior USA
+  aut Partic7
+    stt W to (S) e7
+    stt S to (W) sf7
+          to (C) co7
+    stt C to (W) s7
+
+  //System engineer Junior Malaysia
+  aut Partic8
+    stt W to (S) e8
+    stt S to (W) sf8
+          to (C) co8
+    stt C to (W) s8
+
+  //Database administrator Senior India
+  aut Partic9
+    stt W to (S) e9
+    stt S to (W) sf9
+          to (C) co9
+    stt C to (W) s9
+
+  //ETL engineer Senior India
+  aut Partic10
+    stt W to (S) e10
+    stt S to (W) sf10
+          to (C) co10
+    stt C to (W) s10
+
+  //ETL engineer Junior USA
+  aut Partic11
+    stt W to (S) e11
+    stt S to (W) sf11
+          to (C) co11
+    stt C to (W) s11
+
+  //User Senior USA
+  aut Partic12
+    stt W to (S) e12
+    stt S to (W) sf12
+          to (C) co12
+    stt C to (W) s12
+
+  //User Senior USA
+  aut Partic13
+    stt W to (S) e13
+    stt S to (W) sf13
+          to (C) co13
+    stt C to (W) s13
+
+  //User Senior USA
+  aut Partic14
+    stt W to (S) e14
+    stt S to (W) sf14
+          to (C) co14
+    stt C to (W) s14
+
+results
+
+CT_avail_A = (st CT_avail == A);
+CT_avail_U = (st CT_avail == U);
+CT_activ_M = (st CT_activ == M);
+CT_activ_C = (st CT_activ == C);
+
+Partic1_W = (st Partic1 == W);
+Partic1_S = (st Partic1 == S);
+Partic1_C = (st Partic1 == C);
+
+Partic2_W = (st Partic2 == W);
+Partic2_S = (st Partic2 == S);
+Partic2_C = (st Partic2 == C);
+
+Partic3_W = (st Partic3 == W);
+Partic3_S = (st Partic3 == S);
+Partic3_C = (st Partic3 == C);
+
+Partic4_W = (st Partic4 == W);
+Partic4_S = (st Partic4 == S);
+Partic4_C = (st Partic4 == C);
+
+Partic5_W = (st Partic5 == W);
+Partic5_S = (st Partic5 == S);
+Partic5_C = (st Partic5 == C);
+
+Partic6_W = (st Partic6 == W);
+Partic6_S = (st Partic6 == S);
+Partic6_C = (st Partic6 == C);
+
+Partic7_W = (st Partic7 == W);
+Partic7_S = (st Partic7 == S);
+Partic7_C = (st Partic7 == C);
+
+Partic8_W = (st Partic8 == W);
+Partic8_S = (st Partic8 == S);
+Partic8_C = (st Partic8 == C);
+
+Partic9_W = (st Partic9 == W);
+Partic9_S = (st Partic9 == S);
+Partic9_C = (st Partic9 == C);
+
+Partic10_W = (st Partic10 == W);
+Partic10_S = (st Partic10 == S);
+Partic10_C = (st Partic10 == C);
+
+Partic11_W = (st Partic11 == W);
+Partic11_S = (st Partic11 == S);
+Partic11_C = (st Partic11 == C);
+
+Partic12_W = (st Partic12 == W);
+Partic12_S = (st Partic12 == S);
+Partic12_C = (st Partic12 == C);
+
+Partic13_W = (st Partic13 == W);
+Partic13_S = (st Partic13 == S);
+Partic13_C = (st Partic13 == C);
+
+Partic14_W = (st Partic14 == W);
+Partic14_S = (st Partic14 == S);
+Partic14_C = (st Partic14 == C);

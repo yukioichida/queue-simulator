@@ -1,0 +1,107 @@
+identifiers
+
+  UN = 1; // min
+
+  v_ci_1 = UN; // syn
+  v_co_1 = UN; // syn
+  v_pa_1 = UN; // loc
+  
+  v_ci_2 = UN;
+  v_co_2 = UN;
+  v_pa_2 = UN;
+
+  v_ci_3 = UN;
+  v_co_3 = UN;
+  v_pa_3 = UN;
+
+  v_ci_4 = UN;
+  v_co_4 = UN;
+  v_pa_4 = UN;
+
+  v_ci_5 = UN;
+  v_co_5 = UN;
+  v_pa_5 = UN;
+
+  v_emb = UN;
+  v_voo = UN;
+  v_des = UN;
+
+
+events
+    // passageiro 1
+    syn p_i_1  (v_ci_1);
+    loc pa_1  (v_pa_1);
+
+    // passageiro 2
+    syn p_i_2  (v_ci_2);
+    loc pa_2  (v_pa_2);
+
+    // passageiro 3
+    syn p_i_3  (v_ci_3);
+    loc pa_3  (v_pa_3);
+
+    // passageiro 4
+    syn p_i_4  (v_ci_4);
+    loc pa_4  (v_pa_4);
+
+    // passageiro 5
+    syn p_i_5  (v_ci_5);
+    loc pa_5  (v_pa_5);
+
+    // estados do aviao
+
+    loc emb (v_emb);
+    loc voo (v_voo);
+    loc des (v_des);
+
+    syn i_o (UN);
+
+
+
+partial reachability = ((st aviao == EMBARCANDO) && (st estados_passageiro_1 == PARADO) && (st estados_passageiro_2 == PARADO) && (st estados_passageiro_3 == PARADO) && (st estados_passageiro_4 == PARADO) && (st estados_passageiro_5 == PARADO) && (st assentos_aviao == aav_0));
+
+network GSD (continuous)
+
+  aut aviao
+    stt DESEMBARCANDO to (EMBARCANDO) emb
+    stt EMBARCANDO to (VOANDO) voo
+    stt VOANDO to (DESEMBARCANDO) des
+
+
+  aut estados_passageiro_1
+    stt PARADO to (CHECKIN) p_i_1
+    stt CHECKIN to (CHECKOUT) i_o
+    stt CHECKOUT to (PARADO) pa_1
+
+  aut estados_passageiro_2
+      stt PARADO to (CHECKIN) p_i_2
+      stt CHECKIN to (CHECKOUT) i_o
+      stt CHECKOUT to (PARADO) pa_2
+    
+  aut estados_passageiro_3
+    stt PARADO to (CHECKIN) p_i_3
+    stt CHECKIN to (CHECKOUT) i_o
+    stt CHECKOUT to (PARADO) pa_3
+  
+  aut estados_passageiro_4
+    stt PARADO to (CHECKIN) p_i_4
+    stt CHECKIN to (CHECKOUT) i_o
+    stt CHECKOUT to (PARADO) pa_4
+  
+  aut estados_passageiro_5
+    stt PARADO to (CHECKIN) p_i_5
+    stt CHECKIN to (CHECKOUT) i_o
+    stt CHECKOUT to (PARADO) pa_5
+
+
+  aut assentos_aviao
+    stt aav_0 to (aav_1) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
+    stt aav_1 to (aav_2) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
+    stt aav_2 to (aav_3) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
+    stt aav_3 to (aav_4) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
+    stt aav_4 to (aav_0) i_o
+
+
+results
+
+  pop_aviao = (st assentos_aviao);

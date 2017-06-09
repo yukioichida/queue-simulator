@@ -1,0 +1,159 @@
+//=== MQN - Mixed Queueing Network (N=5) ===
+
+identifiers
+
+  // Network Capacity
+  N = 5;
+
+  // Queue capacities
+  K1 = 2;
+  K2 = 2;
+  K3 = 2;
+  K4 = 2;
+  K5 = 2;
+
+  // Servers
+  C1 = 1;
+  C2 = 1;
+  C3 = 1;
+  C4 = 1;
+  C5 = 1;
+
+  // Service times
+  S1_1 = 0.1;
+  S2_1 = 0.2;
+  S3_1 = 0.4;
+  S4_1 = 0.5;
+  S5_1 = 0.8;
+  S1_2 = 0.2;
+  S2_2 = 0.4;
+  S3_2 = 0.8;
+
+  // Service rates
+  Mu1_1 = 1/S1_1;
+  Mu2_1 = 1/S2_1;
+  Mu3_1 = 1/S3_1;
+  Mu4_1 = 1/S4_1;
+  Mu5_1 = 1/S5_1;
+  Mu1_2 = 1/S1_2;
+  Mu2_2 = 1/S2_2;
+  Mu3_2 = 1/S3_2;
+
+  // Priority of customers
+  d1_1 = (st C1_Q1 == 0);
+  d2_1 = (st C1_Q2 == 0);
+  d3_1 = (st C1_Q3 == 0);
+
+  // Queue capacity per class
+  l1 = ((st C1_Q1) + (st C2_Q1)) < K1;
+  l2 = ((st C1_Q2) + (st C2_Q2)) < K2;
+  l3 = ((st C1_Q3) + (st C2_Q3)) < K3;
+
+  // Routing probabilities
+  Pi12 = 0.6;
+  Pi13 = 0.4;
+  Pi21 = 0.2;
+  Pi23 = 0.8;
+  Pi31 = 0.3;
+  Pi34 = 0.3;
+  Pi35 = 0.4;
+  Pi41 = 0.1;
+  Pi45 = 0.9;
+
+  // Routing rates
+  Lri1           =       2     * l1;
+  rot_C1_Q1toQ2  = 0.8 * Mu1_1 * l2;
+  rot_C1_Q1toQ4  = 0.2 * Mu1_1;
+  rot_C1_Q2toQ3  = 0.5 * Mu2_1 * l3;
+  rot_C1_Q2toQ5  = 0.5 * Mu2_1;
+  rot_C1_Q3toOUT = 1   * Mu3_1;
+  rot_C1_Q4toQ3  = 0.6 * Mu4_1 * l3;
+  rot_C1_Q4toQ5  = 0.4 * Mu4_1;
+  rot_C1_Q5toOUT = 1   * Mu5_1;
+  rot_C2_Q1toQ2  = 1   * Mu1_2 * l2 * d1_1;
+  rot_C2_Q2toQ3  = 1   * Mu2_2 * l3 * d2_1 ;
+  rot_C2_Q3toQ1  = 1   * Mu3_2 * l1 * d3_1;
+
+events
+
+  loc a_l1 (Lri1)
+  loc d_l3 (rot_C1_Q3toOUT)
+  loc d_l5 (rot_C1_Q5toOUT)
+  syn s_C1_Q1toQ2 (rot_C1_Q1toQ2)
+  syn s_C1_Q1toQ4 (rot_C1_Q1toQ4)
+  syn s_C1_Q2toQ3 (rot_C1_Q2toQ3)
+  syn s_C1_Q2toQ5 (rot_C1_Q2toQ5)
+  syn s_C1_Q4toQ3 (rot_C1_Q4toQ3)
+  syn s_C1_Q4toQ5 (rot_C1_Q4toQ5)
+  syn s_C2_Q1toQ2 (rot_C2_Q1toQ2)
+  syn s_C2_Q2toQ3 (rot_C2_Q2toQ3)
+  syn s_C2_Q3toQ1 (rot_C2_Q3toQ1)
+
+reachability = ((((st C1_Q1) + (st C2_Q1)) <= K1) && (((st C1_Q2) + (st C2_Q2)) <= K2) && (((st C1_Q3) + (st C2_Q3)) <= K3) && (((st C2_Q1) + (st C2_Q2) + (st C2_Q3)) == N));
+
+network MQN5 (continuous)
+
+  aut C2_Q1
+    stt n0 to (n1) s_C2_Q3toQ1
+    stt n1 to (n2) s_C2_Q3toQ1
+           to (n0) s_C2_Q1toQ2
+    stt n2 to (n1) s_C2_Q1toQ2
+
+  aut C2_Q2
+    stt n0 to (n1) s_C2_Q1toQ2
+    stt n1 to (n2) s_C2_Q1toQ2
+           to (n0) s_C2_Q2toQ3
+    stt n2 to (n1) s_C2_Q2toQ3
+
+  aut C2_Q3
+    stt n0 to (n1) s_C2_Q2toQ3
+    stt n1 to (n2) s_C2_Q2toQ3
+           to (n0) s_C2_Q3toQ1
+    stt n2 to (n1) s_C2_Q3toQ1
+
+  aut C1_Q1
+    stt n0 to (n1) a_l1
+    stt n1 to (n2) a_l1
+           to (n0) s_C1_Q1toQ2 s_C1_Q1toQ4
+    stt n2 to (n1) s_C1_Q1toQ2 s_C1_Q1toQ4
+
+  aut C1_Q2
+    stt n0 to (n1) s_C1_Q1toQ2
+    stt n1 to (n2) s_C1_Q1toQ2
+           to (n0) s_C1_Q2toQ3 s_C1_Q2toQ5
+    stt n2 to (n1) s_C1_Q2toQ3 s_C1_Q2toQ5
+
+  aut C1_Q3
+    stt n0 to (n1) s_C1_Q2toQ3 s_C1_Q4toQ3
+    stt n1 to (n2) s_C1_Q2toQ3 s_C1_Q4toQ3
+           to (n0) d_l3
+    stt n2 to (n1) d_l3
+
+  aut C1_Q4
+    stt n0 to (n1) s_C1_Q1toQ4
+    stt n1 to (n2) s_C1_Q1toQ4
+           to (n0) s_C1_Q4toQ3 s_C1_Q4toQ5
+    stt n2 to (n1) s_C1_Q4toQ3 s_C1_Q4toQ5
+
+  aut C1_Q5
+    stt n0 to (n1) s_C1_Q2toQ5 s_C1_Q4toQ5
+    stt n1 to (n2) s_C1_Q2toQ5 s_C1_Q4toQ5
+           to (n0) d_l5
+    stt n2 to (n1) d_l5
+
+results
+
+ni1   = ((st C1_Q1) + (st C2_Q1));
+ni2   = ((st C1_Q2) + (st C2_Q2));
+ni3   = ((st C1_Q3) + (st C2_Q3));
+ni4   = (st C1_Q4);
+ni5   = (st C1_Q5);
+nri11 = (st C1_Q1);
+nri12 = (st C1_Q2);
+nri13 = (st C1_Q3);
+nri14 = (st C1_Q4);
+nri15 = (st C1_Q5);
+nri21 = (st C2_Q1);
+nri22 = (st C2_Q2);
+nri23 = (st C2_Q3);
+
