@@ -1,30 +1,30 @@
 identifiers
 
-  UN = 1; // min
+  UN = 1440; // 24 horas
 
-  v_ci_1 = UN; // syn
-  v_co_1 = UN; // syn
-  v_pa_1 = UN; // loc
-  
-  v_ci_2 = UN;
-  v_co_2 = UN;
-  v_pa_2 = UN;
+  v_ci_1 = (UN/288); // 5min checkin
+  v_co_1 = (UN/288); // 5min checkout
+  v_pa_1 = (UN/24);  // 1h (voa 1x por hora)
 
-  v_ci_3 = UN;
-  v_co_3 = UN;
-  v_pa_3 = UN;
+  v_ci_2 = (UN/288); // 5min checkin
+  v_co_2 = (UN/288); // 5min checkout
+  v_pa_2 = (UN/24);  // 1h (voa 1x por hora)
 
-  v_ci_4 = UN;
-  v_co_4 = UN;
-  v_pa_4 = UN;
+  v_ci_3 = (UN/144); // 10min checkin
+  v_co_3 = (UN/144); // 10min checkout
+  v_pa_3 = (UN/24);  // 1h (voa 1x por hora)
 
-  v_ci_5 = UN;
-  v_co_5 = UN;
-  v_pa_5 = UN;
+  v_ci_4 = (UN/144); // 10min checkin
+  v_co_4 = (UN/144); // 10min checkout
+  v_pa_4 = (UN/24);  // 1h (voa 1x por hora)
 
-  v_emb = UN;
-  v_voo = UN;
-  v_des = UN;
+  v_ci_5 = (UN/288); // 5min checkin
+  v_co_5 = (UN/288); // 5min checkout
+  v_pa_5 = (UN/24);  // 1h (voa 1x por hora)
+
+  v_emb = (UN/48); // 30min embarque
+  v_voo = (UN/24); // 1h voo
+  v_des = (UN/48); // 30min desembarque
 
 
 events
@@ -77,17 +77,17 @@ network GSD (continuous)
       stt PARADO to (CHECKIN) p_i_2
       stt CHECKIN to (CHECKOUT) i_o
       stt CHECKOUT to (PARADO) pa_2
-    
+
   aut estados_passageiro_3
     stt PARADO to (CHECKIN) p_i_3
     stt CHECKIN to (CHECKOUT) i_o
     stt CHECKOUT to (PARADO) pa_3
-  
+
   aut estados_passageiro_4
     stt PARADO to (CHECKIN) p_i_4
     stt CHECKIN to (CHECKOUT) i_o
     stt CHECKOUT to (PARADO) pa_4
-  
+
   aut estados_passageiro_5
     stt PARADO to (CHECKIN) p_i_5
     stt CHECKIN to (CHECKOUT) i_o
