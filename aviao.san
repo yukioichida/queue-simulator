@@ -2,58 +2,50 @@ identifiers
 
   UN = 1;
 
-  v_ci_1 = (UN*5); // 5min checkin
-  v_co_1 = (UN*5); // 5min checkout
+  v_ci = (UN*5) && (st aviao == EMBARCANDO);
+  v_i_o = (UN*30) && (st aviao == DESEMBARCANDO); // 30min desembarque
+
   v_pa_1 = (UN*60);  // 1h (voa 1x por hora)
-
-  v_ci_2 = (UN*5); // 5min checkin
-  v_co_2 = (UN*5); // 5min checkout
   v_pa_2 = (UN*60);  // 1h (voa 1x por hora)
-
-  v_ci_3 = (UN*5); // 5min checkin
-  v_co_3 = (UN*5); // 5min checkout
   v_pa_3 = (UN*60);  // 1h (voa 1x por hora)
-
-  v_ci_4 = (UN*5); // 5min checkin
-  v_co_4 = (UN*5); // 5min checkout
   v_pa_4 = (UN*60);  // 1h (voa 1x por hora)
-
-  v_ci_5 = (UN*5); // 5min checkin
-  v_co_5 = (UN*5); // 5min checkout
   v_pa_5 = (UN*60);  // 1h (voa 1x por hora)
 
-  v_emb = (UN*30); // 30min embarque
+  v_emb = (UN*30) && (st assentos_aviao == aav_0); // 30min embarque
   v_voo = (UN*60); // 1h voo
   v_des = (UN*30); // 30min desembarque
-
-  v_i_o = (UN*30)  && (st aviao == DESEMBARCANDO); // 30min desembarque
 
 
 events
     // passageiro 1
-    syn p_i_1  (v_ci_1);
+    syn p_i_1  (v_ci);
     loc pa_1  (v_pa_1);
     loc i_o_1 (v_i_o);
 
+
     // passageiro 2
-    syn p_i_2  (v_ci_2);
+    syn p_i_2  (v_ci);
     loc pa_2  (v_pa_2);
     loc i_o_2 (v_i_o);
 
+
     // passageiro 3
-    syn p_i_3  (v_ci_3);
+    syn p_i_3  (v_ci);
     loc pa_3  (v_pa_3);
     loc i_o_3 (v_i_o);
 
+
     // passageiro 4
-    syn p_i_4  (v_ci_4);
+    syn p_i_4  (v_ci);
     loc pa_4  (v_pa_4);
     loc i_o_4 (v_i_o);
 
+
     // passageiro 5
-    syn p_i_5  (v_ci_5);
+    syn p_i_5  (v_ci);
     loc pa_5  (v_pa_5);
     loc i_o_5 (v_i_o);
+
 
     // estados do aviao
 
@@ -107,29 +99,7 @@ network GSD (continuous)
     stt aav_4 to (aav_0) i_o_1 i_o_2 i_o_3 i_o_4 i_o_5
 
 results
-  pop_aviao = (st assentos_aviao);
-  aviao_voando = (st aviao == VOANDO);
   aviao_assento_1 = (st estados_passageiro_1);
   aviao_assento_2 = (st estados_passageiro_2);
   aviao_assento_3 = (st estados_passageiro_3);
   aviao_assento_4 = (st estados_passageiro_4);
-
-  passageiro_1_checkin = (st estados_passageiro_1 == CHECKIN);
-  passageiro_1_parado = (st estados_passageiro_1 == PARADO);
-  passageiro_1_checkout = (st estados_passageiro_1 == CHECKOUT);
-
-  passageiro_2_checkin = (st estados_passageiro_2 == CHECKIN);
-  passageiro_2_parado = (st estados_passageiro_2 == PARADO);
-  passageiro_2_checkout = (st estados_passageiro_2 == CHECKOUT);
-
-  passageiro_3_checkin = (st estados_passageiro_3 == CHECKIN);
-  passageiro_3_parado = (st estados_passageiro_3 == PARADO);
-  passageiro_3_checkout = (st estados_passageiro_3 == CHECKOUT);
-
-  passageiro_4_checkin = (st estados_passageiro_4 == CHECKIN);
-  passageiro_4_parado = (st estados_passageiro_4 == PARADO);
-  passageiro_4_checkout = (st estados_passageiro_4 == CHECKOUT);
-
-  passageiro_5_checkin = (st estados_passageiro_5 == CHECKIN);
-  passageiro_5_parado = (st estados_passageiro_5 == PARADO);
-  passageiro_5_checkout = (st estados_passageiro_5 == CHECKOUT);
