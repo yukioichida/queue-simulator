@@ -101,11 +101,11 @@ network GSD (continuous)
     stt aav_1 to (aav_2) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
     stt aav_2 to (aav_3) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
     stt aav_3 to (aav_4) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
-    stt aav_4 to (aav_0) i_o
+    stt aav_4 to (aav_5) p_i_1 p_i_2 p_i_3 p_i_4 p_i_5
+    stt aav_5 to (aav_0) i_o
 
 
 results
-
   pop_aviao = (st assentos_aviao);
   passageiro_1_checkin = (st estados_passageiro_1 == CHECKIN);
   passageiro_1_parado = (st estados_passageiro_1 == PARADO);
