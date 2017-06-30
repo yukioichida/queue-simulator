@@ -99,7 +99,8 @@ network GSD (continuous)
     stt aav_4 to (aav_0) i_o_1 i_o_2 i_o_3 i_o_4 i_o_5
 
 results
-  aviao_assento_1 = (st estados_passageiro_1);
-  aviao_assento_2 = (st estados_passageiro_2);
-  aviao_assento_3 = (st estados_passageiro_3);
-  aviao_assento_4 = (st estados_passageiro_4);
+  aviao_assentos = (st assentos_aviao);
+  aviao_assento_1 = (st assentos_aviao == aav_1);
+  aviao_assento_2 = (st assentos_aviao == aav_2);
+  aviao_assento_3 = (st assentos_aviao == aav_3);
+  aviao_assento_4 = (st assentos_aviao == aav_4);
